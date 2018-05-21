@@ -2,7 +2,11 @@ package com.snkit.springboottest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,6 +15,8 @@ public class DemoController {
 
 	@Autowired
 	TestService testService ;
+	
+	
 	
 	@Autowired
 	DemoService demoService ;
@@ -28,7 +34,8 @@ public class DemoController {
 	public UserResp getUsers(){
 		
 		
-		//testService.show();
+		
+		
 		
 		
 		account.accountDetails();
@@ -71,4 +78,20 @@ public class DemoController {
 		return userResp;
 	}
 
+	
+	
+	@GetMapping(value="/user",
+			consumes= {"application/vnd.snkit-v2+json","application/vnd.snkit-v2+xml"}
+			, produces= {"application/vnd.snkit-v2+json","application/vnd.snkit-v2+xml"})
+	public UserResp findAllUsers(){
+	     return demoService.getUsers();
+	}
+	
+	@PostMapping(value="/addUser",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public ResponseEntity<HttpStatus> addUser(@RequestBody User user){
+		 demoService.addUser(user);
+	     return  new ResponseEntity(HttpStatus.OK);
+	}
 }

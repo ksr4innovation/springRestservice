@@ -1,12 +1,17 @@
 package com.snkit.springboottest;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +25,7 @@ public class UserEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private long userid;
 	
 	@Column(name="name")
 	private String name;
@@ -30,13 +35,17 @@ public class UserEntity implements Serializable {
 	private String desg;
 
 
-	public long getId() {
-		return id;
+	@OneToMany(mappedBy="userEntity",fetch=FetchType.LAZY,cascade=CascadeType.ALL)	
+	private List<AddressEntity> addressList = new ArrayList<AddressEntity>();
+
+
+	public long getUserid() {
+		return userid;
 	}
 
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUserid(long userid) {
+		this.userid = userid;
 	}
 
 
@@ -57,6 +66,16 @@ public class UserEntity implements Serializable {
 
 	public void setDesg(String desg) {
 		this.desg = desg;
+	}
+
+
+	public List<AddressEntity> getAddressList() {
+		return addressList;
+	}
+
+
+	public void setAddressList(List<AddressEntity> addressList) {
+		this.addressList = addressList;
 	}
 	
 	
