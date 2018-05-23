@@ -35,7 +35,7 @@ public class UserEntity implements Serializable {
 	private String desg;
 
 
-	@OneToMany(mappedBy="userEntity",fetch=FetchType.LAZY,cascade=CascadeType.ALL)	
+	@OneToMany(mappedBy="userEntity",fetch=FetchType.EAGER,cascade=CascadeType.ALL)	
 	private List<AddressEntity> addressList = new ArrayList<AddressEntity>();
 
 

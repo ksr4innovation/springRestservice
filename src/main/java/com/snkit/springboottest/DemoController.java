@@ -94,4 +94,33 @@ public class DemoController {
 		 demoService.addUser(user);
 	     return  new ResponseEntity(HttpStatus.OK);
 	}
+	
+	
+	@PostMapping(value="/findByName",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public UserResp findByName(@RequestBody User user){
+		 return demoService.findByName(user);
+	}
+	
+	@PostMapping(value="/getUserByName",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public UserResp getUserByName(@RequestBody User user){
+		 return demoService.getUserByName(user);
+	}
+	
+	@PostMapping(value="/getUserByParam",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public UserResp getUserByParam(@RequestBody User user){
+		 return demoService.getUserByParam(user);
+	}
+	
+	@PostMapping(value="/getUsers",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public UserResp getUsers(@RequestBody User user){
+		 return demoService.getUsers(user);
+	}
 }
