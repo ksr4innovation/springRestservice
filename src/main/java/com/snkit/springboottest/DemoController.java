@@ -123,4 +123,12 @@ public class DemoController {
 	public UserResp getUsers(@RequestBody User user){
 		 return demoService.getUsers(user);
 	}
+	
+	
+	@PostMapping(value="/getUsersBySpecification",
+			consumes= {"application/json","application/xml"}
+			, produces= {"application/json","application/xml"})
+	public UserResp getUsersBySpecification(@RequestBody User user){
+		 return demoService.getUsersBySpecification(user);
+	}
 }

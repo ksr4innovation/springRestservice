@@ -167,4 +167,33 @@ public class DemoService {
 		
 		return resp;
 	}
+	
+	
+	public UserResp getUsersBySpecification(User userInput) {
+		UserResp resp = new UserResp();
+		
+		UserSpecification spec = new UserSpecification(userInput);
+		List<UserEntity> list = userRepository.findAll(spec);
+		
+		list.stream().forEach(useEntity -> {
+			User user = new User();
+			user.setCompnayName(useEntity.getDesg());
+			user.setName(useEntity.getName());
+			
+			
+			useEntity.getAddressList().stream().forEach(addEntity ->{
+				AddressVO add = new AddressVO();
+				add.setCity(addEntity.getCity());
+				add.setState(addEntity.getState());
+				add.setStreet(addEntity.getStreet());
+				user.getAddList().add(add);
+				
+			});
+			
+			resp.getUserList().add(user);
+		});
+		
+		
+		return resp;
+	}
 }

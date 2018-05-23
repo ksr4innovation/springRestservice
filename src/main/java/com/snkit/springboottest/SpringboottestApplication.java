@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages= {"com.snkit.*","com.abc.*"})
 @SpringBootApplication
-
 public class SpringboottestApplication implements CommandLineRunner {
 
 	@Autowired
